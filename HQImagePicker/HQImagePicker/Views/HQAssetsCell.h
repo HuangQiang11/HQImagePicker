@@ -11,5 +11,6 @@
 extern NSString * const HQAssetsCellID;
 @interface HQAssetsCell : UICollectionViewCell
 @property (strong, nonatomic)  UIImageView *imageView;
+@property (strong, nonatomic)  UIButton * selectBtn;
 @property (strong, nonatomic) HQAssetModel * assetModel;
 @end

@@ -94,6 +94,10 @@ static const CGFloat kLineWidth = 1.0;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UIButton buttonWithType:UIButtonTypeCustom]];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return  UIStatusBarStyleLightContent;
+}
+
 #pragma mark private method
 - (void)countImageSize{
     CGFloat imageHeight = scrollViewWH * (self.imageSource.size.height / self.imageSource.size.width);

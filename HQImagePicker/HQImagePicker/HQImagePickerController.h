@@ -12,20 +12,21 @@ extern NSString *const HQImagePickerControllerOriginalImage;
 extern NSString *const HQImagePickerControllerEditedImage;
 typedef NS_ENUM(NSInteger, HQImagePickerControllerSourceType) {
     HQPhotoLibrary,
-    HQCamera,
     HQMultipleChoicesLibrary
 };
 @protocol HQImagePickerControllerDelegate;
-
-
 @interface HQImagePickerController : UINavigationController
+/*资源类型*/
 @property (assign, nonatomic) HQImagePickerControllerSourceType sourceType;
-/*
-    多选时，次属性无效
- */
+/*pickerDelegate*/
 @property (weak, nonatomic) id<HQImagePickerControllerDelegate>pickerDelegate;
+/*选择数量，单选时次属性无效*/
+@property (assign, nonatomic) NSUInteger num;
+
 - (void)didCancelPickerController;
 - (void)didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info;
+- (void)showErrorMessage;
+
 @end
 
 @protocol HQImagePickerControllerDelegate<NSObject>

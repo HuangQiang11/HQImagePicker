@@ -28,6 +28,7 @@
         [self takePhoto];
     }];
     UIAlertAction * albumAction = [UIAlertAction actionWithTitle:@"从手机相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        /*单选 + 可编辑*/
         HQImagePickerController * picker = [[HQImagePickerController alloc] init];
         picker.pickerDelegate = self;
         picker.sourceType = HQPhotoLibrary;
@@ -43,7 +44,12 @@
 }
 
 - (IBAction)doubleBtnClick:(id)sender {
-
+    /*多选*/
+    HQImagePickerController * picker = [[HQImagePickerController alloc] init];
+    picker.pickerDelegate = self;
+    picker.sourceType = HQMultipleChoicesLibrary;
+    picker.num = 2;
+    [self presentViewController:picker animated:YES completion:nil];
 }
 
 - (void)takePhoto{
@@ -61,7 +67,13 @@
 
 #pragma mark HQImagePickerControllerDelegate
 - (void)yy_imagePickerController:(HQImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
-    self.singleImageView.image = info[HQImagePickerControllerEditedImage];
+    if (picker.sourceType == HQPhotoLibrary) {
+        self.singleImageView.image = info[HQImagePickerControllerEditedImage];
+    }else if(picker.sourceType == HQMultipleChoicesLibrary){
+        NSArray * arr = info[HQImagePickerControllerOriginalImage];
+        self.leftImageView.image = arr[0];
+        self.rightImageView.image = arr[1];
+    }
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -69,7 +81,6 @@
      [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark UIImagePickerControllerDelegate
 #pragma mark UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];

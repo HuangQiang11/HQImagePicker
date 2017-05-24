@@ -47,7 +47,7 @@
 #pragma mark setter getter
 - (void)setDataModel:(HQCollectionModel *)dataModel{
     _dataModel = dataModel;
-    NSArray * dataArr = [HQPhotoHandler getPhotoCollections:dataModel];
+    NSArray * dataArr = [HQPhotoHandler getPhotoCollectionsWithModel:dataModel];
         if (dataArr.count > 0) {
             CGFloat scale = [UIScreen mainScreen].scale;
             HQAssetModel * model = dataArr.lastObject;

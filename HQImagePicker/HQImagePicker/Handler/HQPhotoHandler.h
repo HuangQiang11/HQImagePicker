@@ -11,8 +11,10 @@
 @class HQAssetModel;
 @class HQCollectionModel;
 typedef void(^HQPhotoHandlerBlock) (id);
+typedef void(^HQPhotoHandlerFailBlock)(id);
 @interface HQPhotoHandler : NSObject
-+ (void)getAssetCollections:(HQPhotoHandlerBlock)success;
-+ (NSArray<HQAssetModel *> *)getPhotoCollections:(HQCollectionModel *)model;
++ (void)getAssetCollectionsWithCompletion:(HQPhotoHandlerBlock)success fail:(HQPhotoHandlerFailBlock)fail;
++ (NSArray<HQAssetModel *>*)getPhotoCollectionsWithModel:(HQCollectionModel *)model;
++ (void)getPhotoCollectionsWithModel:(HQCollectionModel *)model completion:(HQPhotoHandlerBlock)success fail:(HQPhotoHandlerFailBlock)fail;
 + (void)getPhotoWithAsset:(PHAsset *)asset size:(CGSize)size completion:(void (^)(UIImage * result))resultHandler;
 @end

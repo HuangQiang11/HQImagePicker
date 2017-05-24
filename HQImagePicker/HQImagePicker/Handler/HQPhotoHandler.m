@@ -10,6 +10,7 @@
 #import "HQCollectionModel.h"
 #import "UIImage+HQPhoto.h"
 #import "HQAssetModel.h"
+#import "HQMBTool.h"
 @implementation HQPhotoHandler
 + (void)getPhotoWithAsset:(PHAsset *)asset size:(CGSize)size completion:(void (^)(UIImage * result))resultHandler{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -31,83 +32,128 @@
     });
 }
 
-+ (NSArray<HQAssetModel *> *)getPhotoCollections:(HQCollectionModel *)model{
-    if (model == nil) {
-        PHFetchResult * smartAlbums1 = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil];
-        if (smartAlbums1 > 0) {
-            model = [HQCollectionModel collectionModelWithLocationTitle:@"相机胶卷" collection:smartAlbums1.firstObject];
-        }
-    }
-    
++ (NSArray<HQAssetModel *>*)getPhotoCollectionsWithModel:(HQCollectionModel *)model{
     PHFetchResult * fetchResult = [PHAsset fetchAssetsInAssetCollection:model.collection options:nil];
     NSMutableArray * dataArr = @[].mutableCopy;
     for (PHAsset * asset in fetchResult) {
         [dataArr addObject:[HQAssetModel assetModelWithAsset:asset]];
     }
-    return [dataArr copy];
+    return dataArr;
 }
 
-+ (void)getAssetCollections:(HQPhotoHandlerBlock)success{
++ (void)getPhotoCollectionsWithModel:(HQCollectionModel *)model completion:(HQPhotoHandlerBlock)success fail:(HQPhotoHandlerFailBlock)fail{
+    if (model != nil) {
+        NSArray * dataArr = [self getPhotoCollectionsWithModel:model];
+        success ? success(dataArr):nil;
+    }else{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+            if (status == PHAuthorizationStatusDenied || status == PHAuthorizationStatusRestricted) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    fail?fail(@"denied or restricted"):nil;
+                });
+            }else{
+                [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+                    if (status == PHAuthorizationStatusAuthorized) {/*授权成功*/
+                        //相机胶卷
+                        PHFetchResult * smartAlbums1 = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil];
+                        for (PHAssetCollection * collection in smartAlbums1) {
+                            if ([collection.localizedTitle isEqual:@"Camera Roll"]) {
+                                HQCollectionModel * nModel = [HQCollectionModel collectionModelWithLocationTitle:@"相机胶卷" collection:collection];
+                                NSArray * dataArr = [self getPhotoCollectionsWithModel:nModel];
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    success ? success(dataArr):nil;
+                                });
+                            }
+                        }
+                    }else{/*授权失败*/
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            fail?fail(@"fail Authorized"):nil;
+                        });
+                    }
+                }];
+            }
+        });
+    }
+}
+
++ (void)getAssetCollectionsWithCompletion:(HQPhotoHandlerBlock)success fail:(HQPhotoHandlerFailBlock)fail{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
         if (status == PHAuthorizationStatusDenied || status == PHAuthorizationStatusRestricted) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self showErrorMessage];
+                fail ? fail(@"denied or restricted"):nil;
             });
         }else{
-           
+            
             [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-                if (status == PHAuthorizationStatusAuthorized) {
+                if (status == PHAuthorizationStatusAuthorized) {/*授权成功*/
                     
-                     NSMutableArray * dataArr = @[].mutableCopy;
-                     //相机胶卷
+                    NSMutableArray * dataArr = @[].mutableCopy;
+                    //相机胶卷
                     PHFetchResult * smartAlbums1 = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil];
-                    if (smartAlbums1 > 0) {
-                        [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"相机胶卷" collection:smartAlbums1.firstObject]];
+                    for (PHAssetCollection * collection in smartAlbums1) {
+                        if ([collection.localizedTitle isEqual:@"Camera Roll"]) {
+                            [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"相机胶卷" collection:collection]];
+                        }
                     }
                     
                     //SelfPortraits 自拍
                     PHFetchResult * smartAlbums2 = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumSelfPortraits options:nil];
-                    if (smartAlbums2 > 0) {
-                        [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"自拍" collection:smartAlbums2.firstObject]];
+                    for (PHAssetCollection * collection in smartAlbums2) {
+                        if ([collection.localizedTitle isEqual:@"Selfies"]) {
+                            [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"自拍" collection:collection]];
+                        }
                     }
                     
-                     //Panoramas 全景
+                    //Panoramas 全景
                     PHFetchResult * smartAlbums3 = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumPanoramas options:nil];
-                    if (smartAlbums3 > 0) {
-                         [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"全景照片" collection:smartAlbums3.firstObject]];
+                    for (PHAssetCollection * collection in smartAlbums3) {
+                        if ([collection.localizedTitle isEqual:@"Panoramas"]) {
+                            [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"全景照片" collection:collection]];
+                        }
                     }
                     
                     //Favorites 收藏
                     PHFetchResult * smartAlbums4 = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumFavorites options:nil];
-                    if (smartAlbums4 > 0) {
-                        [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"个人收藏" collection:smartAlbums4.firstObject]];
+                    for (PHAssetCollection * collection in smartAlbums4) {
+                        if ([collection.localizedTitle isEqual:@"Favorites"]) {
+                            [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"个人收藏" collection:collection]];
+                        }
                     }
                     
                     //RecentlyAdded 最近添加
                     PHFetchResult * smartAlbums5 = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumRecentlyAdded options:nil];
-                    if (smartAlbums5 > 0) {
-                        [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"最近添加" collection:smartAlbums5.firstObject]];
+                    for (PHAssetCollection * collection in smartAlbums5) {
+                        if ([collection.localizedTitle isEqual:@"Recently Added"]) {
+                            [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"最近添加" collection:collection]];
+                        }
                     }
-
-                      //Bursts 连拍
+                    
+                    //Bursts 连拍
                     PHFetchResult * smartAlbums6 = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumBursts options:nil];
-                    if (smartAlbums6 > 0) {
-                        [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"连拍快照" collection:smartAlbums6.firstObject]];
+                    for (PHAssetCollection * collection in smartAlbums6) {
+                        if ([collection.localizedTitle isEqual:@"Bursts"]) {
+                            [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"连拍快照" collection:collection]];
+                        }
                     }
                     
-                      //Screenshots 截屏
+                    //Screenshots 截屏
                     PHFetchResult * smartAlbums7 = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumScreenshots options:nil];
-                    if (smartAlbums7 > 0) {
-                         [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"屏幕快拍" collection:smartAlbums7.firstObject]];
+                    for (PHAssetCollection * collection in smartAlbums7) {
+                        if ([collection.localizedTitle isEqual:@"Screenshots"]) {
+                            [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"屏幕快拍" collection:collection]];
+                        }
                     }
                     
-                     //DepthEffect 深景效果
+                    //DepthEffect 深景效果
                     PHFetchResult * smartAlbums8 = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumDepthEffect options:nil];
-                    if (smartAlbums8 > 0) {
-                        [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"深景效果" collection:smartAlbums8.firstObject]];
+                    for (PHAssetCollection * collection in smartAlbums8) {
+                        if ([collection.localizedTitle isEqual:@"Depth Effect"]) {
+                            [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"深景效果" collection:collection]];
+                        }
                     }
-
+                    
                     //用户到逻辑相册
                     PHFetchResult * smartAlbums9 = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
                     for (PHAssetCollection * collection in smartAlbums9) {
@@ -116,22 +162,19 @@
                             [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:collection.localizedTitle collection:collection]];
                         }
                     }
-    
+                    
                     dispatch_async(dispatch_get_main_queue(), ^{
                         success ? success(dataArr):nil;
                     });
-                    }
-                }];
-            
+                }else{/*授权失败*/
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        fail ? fail(@"fail Authorized"):nil;
+                    });
+                }
+            }];
         }
     });
-}
 
-+ (void)showErrorMessage{
-    UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"请在设备的\"设置-隐私-照片\"选项中，允许访问你的手机相册" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
-    [alertVC addAction:cancelAction];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertVC animated:YES completion:nil];
 }
 
 @end

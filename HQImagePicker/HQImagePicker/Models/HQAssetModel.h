@@ -10,5 +10,6 @@
 #import <Photos/Photos.h>
 @interface HQAssetModel : NSObject
 @property (strong, nonatomic) PHAsset * asset;
+@property (strong, nonatomic) UIImage * assetImage;
 + (HQAssetModel *)assetModelWithAsset:(PHAsset *)asset;
 @end

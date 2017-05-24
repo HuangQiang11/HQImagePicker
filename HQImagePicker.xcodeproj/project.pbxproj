@@ -18,12 +18,16 @@
 		8C2FD06E1ED3D97F00DE3D12 /* HQCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2FD05F1ED3D97F00DE3D12 /* HQCollectionModel.m */; };
 		8C2FD06F1ED3D97F00DE3D12 /* HQAssetsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2FD0621ED3D97F00DE3D12 /* HQAssetsController.m */; };
 		8C2FD0701ED3D97F00DE3D12 /* HQCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2FD0641ED3D97F00DE3D12 /* HQCollectionController.m */; };
-		8C2FD0711ED3D97F00DE3D12 /* HQImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2FD0661ED3D97F00DE3D12 /* HQImagePickerController.m */; };
 		8C2FD0721ED3D97F00DE3D12 /* HQAssetsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2FD0691ED3D97F00DE3D12 /* HQAssetsCell.m */; };
 		8C2FD0731ED3D97F00DE3D12 /* HQPCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2FD06B1ED3D97F00DE3D12 /* HQPCollectionCell.m */; };
 		8C2FD0771ED3DC5A00DE3D12 /* UIImage+HQPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2FD0761ED3DC5A00DE3D12 /* UIImage+HQPhoto.m */; };
 		8C2FD07C1ED3E4FF00DE3D12 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C2FD07B1ED3E4FF00DE3D12 /* icon.png */; };
 		8C2FD07F1ED3E6AA00DE3D12 /* HQEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2FD07E1ED3E6AA00DE3D12 /* HQEditController.m */; };
+		8C32828E1ED55CB80078CD6C /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C32828D1ED55CB80078CD6C /* MBProgressHUD.m */; };
+		8C3282911ED55D3E0078CD6C /* HQMBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3282901ED55D3E0078CD6C /* HQMBTool.m */; };
+		8C3282941ED562D60078CD6C /* HQImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C3282931ED562D60078CD6C /* HQImagePickerController.m */; };
+		8C90FF571ED51D3C009A0F14 /* 未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C90FF561ED51D3C009A0F14 /* 未选中.png */; };
+		8C90FF591ED51D40009A0F14 /* 选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C90FF581ED51D40009A0F14 /* 选中.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,8 +51,6 @@
 		8C2FD0621ED3D97F00DE3D12 /* HQAssetsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQAssetsController.m; sourceTree = "<group>"; };
 		8C2FD0631ED3D97F00DE3D12 /* HQCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQCollectionController.h; sourceTree = "<group>"; };
 		8C2FD0641ED3D97F00DE3D12 /* HQCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQCollectionController.m; sourceTree = "<group>"; };
-		8C2FD0651ED3D97F00DE3D12 /* HQImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQImagePickerController.h; sourceTree = "<group>"; };
-		8C2FD0661ED3D97F00DE3D12 /* HQImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQImagePickerController.m; sourceTree = "<group>"; };
 		8C2FD0681ED3D97F00DE3D12 /* HQAssetsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQAssetsCell.h; sourceTree = "<group>"; };
 		8C2FD0691ED3D97F00DE3D12 /* HQAssetsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQAssetsCell.m; sourceTree = "<group>"; };
 		8C2FD06A1ED3D97F00DE3D12 /* HQPCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQPCollectionCell.h; sourceTree = "<group>"; };
@@ -58,6 +60,14 @@
 		8C2FD07B1ED3E4FF00DE3D12 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		8C2FD07D1ED3E6AA00DE3D12 /* HQEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQEditController.h; sourceTree = "<group>"; };
 		8C2FD07E1ED3E6AA00DE3D12 /* HQEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQEditController.m; sourceTree = "<group>"; };
+		8C32828C1ED55CB80078CD6C /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		8C32828D1ED55CB80078CD6C /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		8C32828F1ED55D3E0078CD6C /* HQMBTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQMBTool.h; sourceTree = "<group>"; };
+		8C3282901ED55D3E0078CD6C /* HQMBTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQMBTool.m; sourceTree = "<group>"; };
+		8C3282921ED562D60078CD6C /* HQImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HQImagePickerController.h; sourceTree = "<group>"; };
+		8C3282931ED562D60078CD6C /* HQImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HQImagePickerController.m; sourceTree = "<group>"; };
+		8C90FF561ED51D3C009A0F14 /* 未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "未选中.png"; sourceTree = "<group>"; };
+		8C90FF581ED51D40009A0F14 /* 选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选中.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +125,9 @@
 		8C2FD0571ED3D97F00DE3D12 /* HQImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				8C3282921ED562D60078CD6C /* HQImagePickerController.h */,
+				8C3282931ED562D60078CD6C /* HQImagePickerController.m */,
+				8C32828A1ED55CB80078CD6C /* Libs */,
 				8C2FD0781ED3E47400DE3D12 /* Images */,
 				8C2FD0741ED3DC5A00DE3D12 /* Categorys */,
 				8C2FD0581ED3D97F00DE3D12 /* Handler */,
@@ -130,6 +143,8 @@
 			children = (
 				8C2FD0591ED3D97F00DE3D12 /* HQPhotoHandler.h */,
 				8C2FD05A1ED3D97F00DE3D12 /* HQPhotoHandler.m */,
+				8C32828F1ED55D3E0078CD6C /* HQMBTool.h */,
+				8C3282901ED55D3E0078CD6C /* HQMBTool.m */,
 			);
 			path = Handler;
 			sourceTree = "<group>";
@@ -152,8 +167,6 @@
 				8C2FD0621ED3D97F00DE3D12 /* HQAssetsController.m */,
 				8C2FD0631ED3D97F00DE3D12 /* HQCollectionController.h */,
 				8C2FD0641ED3D97F00DE3D12 /* HQCollectionController.m */,
-				8C2FD0651ED3D97F00DE3D12 /* HQImagePickerController.h */,
-				8C2FD0661ED3D97F00DE3D12 /* HQImagePickerController.m */,
 				8C2FD07D1ED3E6AA00DE3D12 /* HQEditController.h */,
 				8C2FD07E1ED3E6AA00DE3D12 /* HQEditController.m */,
 			);
@@ -183,9 +196,28 @@
 		8C2FD0781ED3E47400DE3D12 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8C90FF581ED51D40009A0F14 /* 选中.png */,
+				8C90FF561ED51D3C009A0F14 /* 未选中.png */,
 				8C2FD07B1ED3E4FF00DE3D12 /* icon.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		8C32828A1ED55CB80078CD6C /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				8C32828B1ED55CB80078CD6C /* MBProgressHUD */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		8C32828B1ED55CB80078CD6C /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				8C32828C1ED55CB80078CD6C /* MBProgressHUD.h */,
+				8C32828D1ED55CB80078CD6C /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,7 +251,8 @@
 				TargetAttributes = {
 					8C2FD0201ED3C9B300DE3D12 = {
 						CreatedOnToolsVersion = 8.3.2;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = LK8RMS429C;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -250,6 +283,8 @@
 				8C2FD0341ED3C9B300DE3D12 /* LaunchScreen.storyboard in Resources */,
 				8C2FD0311ED3C9B300DE3D12 /* Assets.xcassets in Resources */,
 				8C2FD02F1ED3C9B300DE3D12 /* Main.storyboard in Resources */,
+				8C90FF571ED51D3C009A0F14 /* 未选中.png in Resources */,
+				8C90FF591ED51D40009A0F14 /* 选中.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,14 +300,16 @@
 				8C2FD06C1ED3D97F00DE3D12 /* HQPhotoHandler.m in Sources */,
 				8C2FD0771ED3DC5A00DE3D12 /* UIImage+HQPhoto.m in Sources */,
 				8C2FD02C1ED3C9B300DE3D12 /* ViewController.m in Sources */,
+				8C3282911ED55D3E0078CD6C /* HQMBTool.m in Sources */,
 				8C2FD0701ED3D97F00DE3D12 /* HQCollectionController.m in Sources */,
 				8C2FD0291ED3C9B300DE3D12 /* AppDelegate.m in Sources */,
 				8C2FD06E1ED3D97F00DE3D12 /* HQCollectionModel.m in Sources */,
 				8C2FD0731ED3D97F00DE3D12 /* HQPCollectionCell.m in Sources */,
 				8C2FD0261ED3C9B300DE3D12 /* main.m in Sources */,
 				8C2FD07F1ED3E6AA00DE3D12 /* HQEditController.m in Sources */,
-				8C2FD0711ED3D97F00DE3D12 /* HQImagePickerController.m in Sources */,
 				8C2FD0721ED3D97F00DE3D12 /* HQAssetsCell.m in Sources */,
+				8C32828E1ED55CB80078CD6C /* MBProgressHUD.m in Sources */,
+				8C3282941ED562D60078CD6C /* HQImagePickerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,14 +430,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = LK8RMS429C;
 				INFOPLIST_FILE = HQImagePicker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xx.yyyy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xxxx.yyyy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "aff37cd1-53b8-401e-aec6-cfe4e99ac07d";
+				PROVISIONING_PROFILE_SPECIFIER = "YouBao-Development";
 			};
 			name = Debug;
 		};
@@ -408,15 +445,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = LK8RMS429C;
 				INFOPLIST_FILE = HQImagePicker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.xx.yyyy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xxxx.yyyy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "25ba637a-2238-4f8e-a489-f14161902d69";
+				PROVISIONING_PROFILE_SPECIFIER = "YouBao-Distribution";
 			};
 			name = Release;
 		};
@@ -439,6 +476,7 @@
 				8C2FD03A1ED3C9B300DE3D12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

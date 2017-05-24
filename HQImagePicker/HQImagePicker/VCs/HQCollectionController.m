@@ -15,6 +15,7 @@
 @interface HQCollectionController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic)  UITableView *tableView;
 @property (strong, nonatomic) NSArray * dataArr;
+@property (weak, nonatomic) HQImagePickerController * nvc;
 @end
 
 @implementation HQCollectionController
@@ -38,9 +39,12 @@
     self.navigationItem.rightBarButtonItem = rightItem;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return  UIStatusBarStyleLightContent;
+}
+
 - (void)rightBtnItem:(UIBarButtonItem *)item{
-    HQImagePickerController * nvc = (HQImagePickerController *)self.navigationController;
-    [nvc didCancelPickerController];
+    [self.nvc didCancelPickerController];
 }
 
 - (void)setupLayout{
@@ -48,9 +52,11 @@
 }
 
 - (void)setupPhotos{
-    [HQPhotoHandler getAssetCollections:^(NSArray * sender) {
+    [HQPhotoHandler getAssetCollectionsWithCompletion:^(NSArray *sender) {
         _dataArr = [sender copy];
         [self.tableView reloadData];
+    } fail:^(NSString * errorStr) {
+        [self.nvc showErrorMessage];
     }];
 }
 
@@ -81,7 +87,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma mark lazy
+#pragma mark setting getting
 - (UITableView *)tableView{
     if (!_tableView) {
         _tableView = [[UITableView alloc] init];
@@ -92,5 +98,8 @@
     return _tableView;
 }
 
+- (HQImagePickerController *)nvc{
+    return  (HQImagePickerController *)self.navigationController;
+}
 
 @end

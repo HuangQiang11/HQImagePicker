@@ -9,6 +9,7 @@
 #import "HQImagePickerController.h"
 #import "HQCollectionController.h"
 #import "HQAssetsController.h"
+#import "HQMBTool.h"
 NSString *const HQImagePickerControllerOriginalImage = @"HQImagePickerControllerOriginalImage";
 NSString *const HQImagePickerControllerEditedImage = @"HQImagePickerControllerEditedImage";
 @interface HQImagePickerController ()<UIGestureRecognizerDelegate>
@@ -23,6 +24,14 @@ NSString *const HQImagePickerControllerEditedImage = @"HQImagePickerControllerEd
     [self setupBarStyle];
     [self setupGesture];
     self.viewControllers = @[[HQCollectionController new],[HQAssetsController new]];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if (self.sourceType == HQMultipleChoicesLibrary && self.num <= 0) {
+        [HQMBTool showMessage:@"数量出错！"];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void)setupGesture{
@@ -49,6 +58,15 @@ NSString *const HQImagePickerControllerEditedImage = @"HQImagePickerControllerEd
     if (self.pickerDelegate && [self.pickerDelegate respondsToSelector:@selector(yy_imagePickerController:didFinishPickingMediaWithInfo:)]) {
         [self.pickerDelegate yy_imagePickerController:self didFinishPickingMediaWithInfo:info];
     }
+}
+
+- (void)showErrorMessage{
+    UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"请在设备的\"设置-隐私-照片\"选项中，允许访问你的手机相册" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [alertVC addAction:cancelAction];
+    [self presentViewController:alertVC animated:YES completion:nil];
 }
 
 #pragma mark UIGestureRecognizerDelegate
