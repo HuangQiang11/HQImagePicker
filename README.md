@@ -5,4 +5,6 @@
 ![image](https://github.com/HuangQiang11/HQImagePicker/blob/master/Images/1.png)
 ![image](https://github.com/HuangQiang11/HQImagePicker/blob/master/Images/2.png)
 ![image](https://github.com/HuangQiang11/HQImagePicker/blob/master/Images/3.png)
+![image](https://github.com/HuangQiang11/HQImagePicker/blob/master/Images/4.png)
+
 
