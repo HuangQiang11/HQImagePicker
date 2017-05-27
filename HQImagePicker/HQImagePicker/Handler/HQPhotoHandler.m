@@ -101,7 +101,7 @@
                     //SelfPortraits 自拍
                     PHFetchResult * smartAlbums2 = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumSelfPortraits options:nil];
                     for (PHAssetCollection * collection in smartAlbums2) {
-                        if ([collection.localizedTitle isEqual:@"Selfies"]) {
+                        if ([collection.localizedTitle isEqual:@"Selfies"] || [collection.localizedTitle isEqual:@"Slo-mo"]) {
                             [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"自拍" collection:collection]];
                         }
                     }
@@ -141,6 +141,7 @@
                     //Screenshots 截屏
                     PHFetchResult * smartAlbums7 = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumScreenshots options:nil];
                     for (PHAssetCollection * collection in smartAlbums7) {
+                        NSLog(@"%@",collection.localizedTitle);
                         if ([collection.localizedTitle isEqual:@"Screenshots"]) {
                             [dataArr addObject:[HQCollectionModel collectionModelWithLocationTitle:@"屏幕快拍" collection:collection]];
                         }
