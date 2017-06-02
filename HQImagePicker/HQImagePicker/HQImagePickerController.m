@@ -47,6 +47,10 @@ NSString *const HQImagePickerControllerEditedImage = @"HQImagePickerControllerEd
     [bar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return  UIStatusBarStyleLightContent;
+}
+
 #pragma mark common method
 - (void)didCancelPickerController{
     if (self.pickerDelegate && [self.pickerDelegate respondsToSelector:@selector(yy_imagePickerControllerDidCancel:)]) {

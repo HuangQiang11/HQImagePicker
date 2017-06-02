@@ -39,10 +39,6 @@
     self.navigationItem.rightBarButtonItem = rightItem;
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return  UIStatusBarStyleLightContent;
-}
-
 - (void)rightBtnItem:(UIBarButtonItem *)item{
     [self.nvc didCancelPickerController];
 }

@@ -68,10 +68,6 @@
     }
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    return  UIStatusBarStyleLightContent;
-}
-
 #pragma mark all click
 - (void)leftItemClick:(UIBarButtonItem *)item{
     [self.navigationController popViewControllerAnimated:YES];
