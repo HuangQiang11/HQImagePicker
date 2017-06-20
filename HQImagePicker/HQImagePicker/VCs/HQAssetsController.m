@@ -17,7 +17,7 @@
 @interface HQAssetsController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (strong, nonatomic) UICollectionView * collectionView;
 @property (strong, nonatomic) UICollectionViewFlowLayout *flowlayout;
-@property (strong, nonatomic) NSArray * dataArr;
+@property (copy, nonatomic) NSArray * dataArr;
 @property (assign, nonatomic) NSUInteger num;
 @property (strong, nonatomic) NSMutableDictionary * selectDict;
 @property (strong, nonatomic) UIToolbar * bar;
@@ -110,7 +110,7 @@
         self.selectDict = @{}.mutableCopy;
     }
     [HQPhotoHandler getPhotoCollectionsWithModel:self.collectionModel completion:^(NSArray * sender) {
-        self.dataArr = sender.copy;
+        _dataArr = [sender copy];
         [self.collectionView reloadData];
     } fail:^(NSString * errorStr) {
         [self.nvc showErrorMessage];

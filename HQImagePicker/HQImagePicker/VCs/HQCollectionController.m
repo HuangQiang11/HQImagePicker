@@ -14,7 +14,7 @@
 #import "HQImagePickerController.h"
 @interface HQCollectionController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic)  UITableView *tableView;
-@property (strong, nonatomic) NSArray * dataArr;
+@property (copy, nonatomic) NSArray * dataArr;
 @property (weak, nonatomic) HQImagePickerController * nvc;
 @end
 
