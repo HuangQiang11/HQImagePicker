@@ -16,6 +16,8 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         PHImageRequestOptions * option = [[PHImageRequestOptions alloc] init];
         option.resizeMode = PHImageRequestOptionsResizeModeFast;
+        option.synchronous = YES;
+        option.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
         [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeDefault options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
             UIImage * image = nil;
             if (CGSizeEqualToSize(size, PHImageManagerMaximumSize)) {
